@@ -13,18 +13,12 @@ export const AgentProvider = ({children}) => {
   const [agentData,setAgentData] = useState([]);
   const [loading,setLoading] = useState(true);
   const [error,setError] = useState(null);
-  const [selectedAgent, setSelectedAgent] = useState(() => {
-    const savedAgent = localStorage.getItem('selectedAgent');
-    return savedAgent ? JSON.parse(savedAgent) : null;
-  });
+  const [selectedAgent, setSelectedAgent] = useState(null);
 
   const updateAgentName = (updatedName) => {
     if (selectedAgent) {
       const updatedAgent = { ...selectedAgent, agent_name: updatedName };
       setSelectedAgent(updatedAgent);
-
-      
-      localStorage.setItem('selectedAgent', JSON.stringify(updatedAgent));
 
       
       setAgentData((prevAgentData) =>
